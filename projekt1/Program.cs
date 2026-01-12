@@ -20,7 +20,7 @@ while (true)
     int Choice = 0;
     bool success = int.TryParse(ChoiceSteak, out Choice);
 
-    if (Choice > 3)
+    if (Choice >3 )
     {
         Console.WriteLine("Du måste skriva en siffra (1-3)!");
     }
@@ -29,37 +29,59 @@ while (true)
     if (ChoiceSteak != "1")
     {
         buger.frying += 10;
+        Console.WriteLine("Bra! nästa steg");
+        break;
     }
 
     if (ChoiceSteak != "2")
     {
         buger.frying -= 10;
+        Console.WriteLine("Bra! nästa steg");
+        break;
     }
 
     if (ChoiceSteak != "3")
     {
         buger.frying -= 20;
-    }
-
-    else
-    {
         Console.WriteLine("Bra! nästa steg");
         break;
     }
 
 }
 
+Console.Clear();
+
+// Andra rundan 
+List<string> ingredientList = new List<string>()
+{
+};
+// En lista som låter användaren skriva in ingredientser som hen vill ha på börjarna
+while (true)
+{
+
+    Console.WriteLine("Vad skulle du vilja ha på din hamburgare");
+    Console.WriteLine("skriv 'klar' när du är färding");
+    string ingredientChoice = Console.ReadLine();
+    buger.ingredients = ingredientChoice;
+
+    ingredientList.Add(ingredientChoice);
+
+    if (ingredientChoice == "klar")
+    {
+        break;
+    }
+
+}
 
 
+// foreach (string ingredients in ingredientList)
+// {
+//     Console.WriteLine(ingredients);
+// }
+
+// Console.ReadLine();
 
 
-
-
-
-
-
-Console.WriteLine("Vad skulle du vilja ha på din hamburgare");
-string Choice2 = Console.ReadLine();
 
 
 
