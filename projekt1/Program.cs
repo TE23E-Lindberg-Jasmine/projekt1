@@ -4,12 +4,14 @@ hambuger buger = new hambuger();
 buger.frying = 0;
 
 Console.WriteLine("Välkommen till burgar tävlingen! I denna tävling ska du bygga din egna hamburgre för att sen kommer bli betygsatt av kända kockar som är jury");
-Console.WriteLine("De kommer vara 3 rundor där du kommer få välja hur du ska steka din börjare och vad du ska ha på din burgare");
 
 // första rundan
-
+Console.ReadLine();
+Console.Clear();
 Console.WriteLine("Nu ska du välja hur du vill tillaga din börjare");
 
+
+// Användaren får välja hur hambugrarens ska stekas 
 while (true)
 {
     Console.WriteLine("1) stekas");
@@ -20,7 +22,7 @@ while (true)
     int Choice = 0;
     bool success = int.TryParse(ChoiceSteak, out Choice);
 
-    if (Choice >3 )
+    if (Choice > 3)
     {
         Console.WriteLine("Du måste skriva en siffra (1-3)!");
     }
@@ -51,10 +53,20 @@ while (true)
 
 Console.Clear();
 
+
+
+
+
+
+
 // Andra rundan 
+Random Rate = new Random();
 List<string> ingredientList = new List<string>()
 {
+    
 };
+int totalPoäng = 0;
+
 // En lista som låter användaren skriva in ingredientser som hen vill ha på börjarna
 while (true)
 {
@@ -64,25 +76,34 @@ while (true)
     string ingredientChoice = Console.ReadLine();
     buger.ingredients = ingredientChoice;
 
-    ingredientList.Add(ingredientChoice);
 
-    if (ingredientChoice == "klar")
+   // 1. Kolla om användaren är klar först!
+    if (ingredientChoice.ToLower() == "klar")
     {
         break;
     }
 
+    
+    ingredientList.Add(ingredientChoice);
+
+    // 3. Slumpa poäng för just denna ingrediens (t.ex. mellan 1 och 10)
+    int poäng = Rate.Next(1, 11);
+    totalPoäng += poäng; // Lägg till i den totala summan
+
+ 
 }
 
 
-// foreach (string ingredients in ingredientList)
-// {
-//     Console.WriteLine(ingredients);
-// }
 
-// Console.ReadLine();
+Console.Clear();
+// skriver ut listan på ingrienster som avändaren har skrivit in
+foreach (string ingredients in ingredientList)
+{
 
+    Console.WriteLine(ingredients);
+}
 
-
+Console.ReadLine();
 
 
 
