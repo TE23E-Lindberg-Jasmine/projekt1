@@ -1,15 +1,17 @@
 
 
-public class hambuger
+public class Hamburger
 {
+   
+    public int Frying { get; set; } = 0;
 
-    public int frying = 0;
+ 
+    public string Ingredients { get; set; } = "";
 
-    public string ingredients = "";
-  public string Getingredients()
-  {
-    return ingredients;
-  }
-    
-
+    public string GetIngredients()
+    {
+   
+        return Ingredients;
+    }
 }
+
