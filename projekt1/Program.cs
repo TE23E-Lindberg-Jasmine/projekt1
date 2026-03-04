@@ -1,69 +1,111 @@
-﻿// 1. Skapa objektet (stort H i Hamburger)
-Hamburger buger = new Hamburger();
+﻿
 
-Console.WriteLine("Välkommen till burgartävlingen!");
-Console.WriteLine("Tryck Enter för att starta...");
+Hamburger buger = new Hamburger();
+buger.frying = 0;
+
+Console.WriteLine("Välkommen till burgar tävlingen! I denna tävling ska du bygga din egna hamburgre för att sen kommer bli betygsatt av kända kockar som är jury");
+
+// första rundan
 Console.ReadLine();
 Console.Clear();
+Console.WriteLine("Nu ska du välja hur du vill tillaga din börjare");
 
-// --- FÖRSTA RUNDAN: TILLAGNING ---
+
+// Användaren får välja hur hambugrarens ska stekas 
 while (true)
 {
-    Console.WriteLine("Hur vill du tillaga din burgare?");
-    Console.WriteLine("1) Stekas\n2) Grillas\n3) Kokas");
+    Console.WriteLine("1) stekas");
+    Console.WriteLine("2) grilla");
+    Console.WriteLine("3) koka");
 
-    string choiceSteak = Console.ReadLine();
+    string ChoiceSteak = Console.ReadLine();
+    int Choice = 0;
+    bool success = int.TryParse(ChoiceSteak, out Choice);
 
-    // Vi kollar vad användaren valde med ==
-    if (choiceSteak == "1")
+    if (Choice > 3)
     {
-        buger.Frying += 10;
-        Console.WriteLine("Stekt och klart!");
-        break; // Avbryt loopen
+        Console.WriteLine("Du måste skriva en siffra (1-3)!");
     }
-    else if (choiceSteak == "2")
+
+
+    if (ChoiceSteak != "1")
     {
-        buger.Frying += 15; // Lite extra för grillat
-        Console.WriteLine("Grillat är godast!");
+        buger.frying += 10;
+        Console.WriteLine("Bra! nästa steg");
         break;
     }
-    else if (choiceSteak == "3")
+
+    if (ChoiceSteak != "2")
     {
-        buger.Frying -= 10;
-        Console.WriteLine("Koka burgare..? Okej då...");
+        buger.frying -= 10;
+        Console.WriteLine("Bra! nästa steg");
         break;
     }
-    else
+
+    if (ChoiceSteak != "3")
     {
-        Console.WriteLine("Ogiltigt val, välj 1-3.");
+        buger.frying -= 20;
+        Console.WriteLine("Bra! nästa steg");
+        break;
     }
+
 }
 
 Console.Clear();
 
-// --- ANDRA RUNDAN: INGREDIENSER ---
-Random rate = new Random();
-List<string> ingredientList = new List<string>();
+
+
+// Andra rundan 
+Random Rate = new Random();
+List<string> ingredientList = new List<string>()
+{
+    
+};
 int totalPoäng = 0;
 
+// En lista som låter användaren skriva in ingredientser som hen vill ha på börjarna
 while (true)
 {
-    Console.WriteLine("Vad vill du ha på din hamburgare? (Skriv 'klar' när du är färdig)");
-    string ingredientChoice = Console.ReadLine();
 
+    Console.WriteLine("Vad skulle du vilja ha på din hamburgare");
+    Console.WriteLine("skriv 'klar' när du är färding");
+    string ingredientChoice = Console.ReadLine();
+    buger.Ingredients = ingredientChoice;
+
+
+   // 1. Kolla om användaren är klar först!
     if (ingredientChoice.ToLower() == "klar")
     {
         break;
     }
 
-    // Lägg till i listan
+    
     ingredientList.Add(ingredientChoice);
 
-    // Slumpa poäng
-    int poäng = rate.Next(1, 11);
-    totalPoäng += poäng;
-    Console.WriteLine($"+{poäng} poäng för {ingredientChoice}!");
+    // 3. Slumpa poäng för just denna ingrediens (t.ex. mellan 1 och 10)
+    int poäng = Rate.Next(1, 11);
+    totalPoäng += poäng; // Lägg till i den totala summan
+
+ 
 }
+
+
+         
+
+Console.Clear();
+// skriver ut listan på ingrienster som avändaren har skrivit in
+foreach (string ingredients in ingredientList)
+{
+
+    Console.WriteLine(ingredients);
+}
+
+
+Console.Clear();
+Console.WriteLine("--- JURYNS DOM ---");
+
+// Anropa metoden från klassen
+
 
 Console.Clear();
 Console.WriteLine("DIN BURGARE INNEHÅLLER:");
@@ -77,7 +119,19 @@ foreach (string item in ingredientList)
 // Slutbetyg
 Console.WriteLine("\n----------------------------");
 Console.WriteLine($"Kockarnas totalbetyg: {totalPoäng} poäng!");
-Console.WriteLine($"Tillagningspoäng: {buger.Frying}");
+Console.WriteLine($"Tillagningspoäng: {buger.frying}");
 Console.WriteLine("----------------------------");
 
+
+
+
+
+
+
+
+
 Console.ReadLine();
+
+
+
+
