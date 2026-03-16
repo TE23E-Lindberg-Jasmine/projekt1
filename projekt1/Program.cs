@@ -1,7 +1,7 @@
 ﻿
 
 Hamburger buger = new Hamburger();
-buger.frying = 0;
+buger.Frying = 0;
 
 Console.WriteLine("Välkommen till burgar tävlingen! I denna tävling ska du bygga din egna hamburgre för att sen kommer bli betygsatt av kända kockar som är jury");
 
@@ -30,21 +30,21 @@ while (true)
 
     if (ChoiceSteak != "1")
     {
-        buger.frying += 10;
+        buger.Frying += 10;
         Console.WriteLine("Bra! nästa steg");
         break;
     }
 
     if (ChoiceSteak != "2")
     {
-        buger.frying -= 10;
+        buger.Frying -= 10;
         Console.WriteLine("Bra! nästa steg");
         break;
     }
 
     if (ChoiceSteak != "3")
     {
-        buger.frying -= 20;
+        buger.Frying -= 20;
         Console.WriteLine("Bra! nästa steg");
         break;
     }
@@ -67,31 +67,26 @@ int totalPoäng = 0;
 while (true)
 {
 
-    Console.WriteLine("Vad skulle du vilja ha på din hamburgare");
+    Console.WriteLine("Nu får du lägga in en speciall ingridients, detta kan vara avgörandet för dig");
     Console.WriteLine("skriv 'klar' när du är färding");
     string ingredientChoice = Console.ReadLine();
-    buger.Ingredients = ingredientChoice;
-
-
-   // 1. Kolla om användaren är klar först!
+    
+   // 1. Kolla om användaren är klar först
     if (ingredientChoice.ToLower() == "klar")
     {
         break;
     }
 
-    
     ingredientList.Add(ingredientChoice);
 
     // 3. Slumpa poäng för just denna ingrediens (t.ex. mellan 1 och 10)
     int poäng = Rate.Next(1, 11);
     totalPoäng += poäng; // Lägg till i den totala summan
 
- 
 }
 
 
-         
-
+        
 Console.Clear();
 // skriver ut listan på ingrienster som avändaren har skrivit in
 foreach (string ingredients in ingredientList)
@@ -116,10 +111,17 @@ foreach (string item in ingredientList)
     Console.WriteLine("- " + item);
 }
 
+// Efter att du räknat ut totalPoäng i din loop:
+string betyg = buger.GetJudgesVerdict(totalPoäng);
+string tillagningsstatus = buger.GetCookingStatus();
+
+Console.WriteLine("--- JURYNS DOM ---");
+Console.WriteLine(betyg);
+
 // Slutbetyg
 Console.WriteLine("\n----------------------------");
 Console.WriteLine($"Kockarnas totalbetyg: {totalPoäng} poäng!");
-Console.WriteLine($"Tillagningspoäng: {buger.frying}");
+Console.WriteLine($"Tillagningspoäng: {buger.Frying}");
 Console.WriteLine("----------------------------");
 
 

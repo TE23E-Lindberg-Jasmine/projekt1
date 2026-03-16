@@ -1,35 +1,34 @@
-
-
 public class Hamburger
 {
-   
-
     private int _frying;
-    public int frying 
-    { 
-        get => _frying; 
-        set => _frying = Math.Max(0, value); // Förhindrar negativ stektid
+    public int Frying // Ändrat till PascalCase
+    {
+        get => _frying;
+        set => _frying = Math.Max(0, value);
     }
 
-    public string Ingredients { get; set; } = "";
+    // Vi gör 'set' privat så att ingredienser bara kan läggas till via AddIngredient-metoden
+    public List<string> IngredientList { get; private set; } = new List<string>();
 
-    // Metod som kollar hur burgaren mår baserat på stektid
+    public void AddIngredient(string ingredient)
+    {
+        if (!string.IsNullOrWhiteSpace(ingredient))
+        {
+            IngredientList.Add(ingredient);
+        }
+    }
+
     public string GetCookingStatus()
     {
-        if (frying == 0) return "Helt rå (du glömde slå på spisen!)";
-        if (frying < 10) return "Lite väl blodig, nästan rå.";
-        if (frying >= 10 && frying <= 15) return "Perfekt stekt! Saftig och god.";
-        if (frying > 15 && frying <= 25) return "Genomstekt och lite torr.";
-        return "Ett kolsvart stycke gummi. Oätligt!";
+        string status = Frying > 5 ? "Välstekt" : "Medium";
+        return $"Hamburgaren har {IngredientList.Count} ingredienser och är {status}.";
     }
 
- 
- 
-
-    public string GetIngredients()
+    public string GetJudgesVerdict(int totalPoints)
     {
-   
-        return Ingredients;
+        if (totalPoints > 50) return "Enastående! Kockarna vill ha receptet.";
+        if (totalPoints > 25) return "Bra jobbat, men den saknar det lilla extra.";
+        return "Tyvärr, det här var ingen smakupplevelse.";
     }
-}
 
+}
