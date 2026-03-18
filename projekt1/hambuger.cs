@@ -1,7 +1,7 @@
 public class Hamburger
 {
     private int _frying;
-    public int Frying // Ändrat till PascalCase
+    public int Frying 
     {
         get => _frying;
         set => _frying = Math.Max(0, value);

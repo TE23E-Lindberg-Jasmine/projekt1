@@ -1,6 +1,4 @@
-﻿
-
-Hamburger buger = new Hamburger();
+﻿Hamburger buger = new Hamburger();
 buger.Frying = 0;
 
 Console.WriteLine("Välkommen till burgar tävlingen! I denna tävling ska du bygga din egna hamburgre för att sen kommer bli betygsatt av kända kockar som är jury");
@@ -53,8 +51,6 @@ while (true)
 
 Console.Clear();
 
-
-
 // Andra rundan 
 Random Rate = new Random();
 List<string> ingredientList = new List<string>()
@@ -70,6 +66,7 @@ while (true)
     Console.WriteLine("Nu får du lägga in en speciall ingridients, detta kan vara avgörandet för dig");
     Console.WriteLine("skriv 'klar' när du är färding");
     string ingredientChoice = Console.ReadLine();
+    Console.Clear();
     
    // 1. Kolla om användaren är klar först
     if (ingredientChoice.ToLower() == "klar")
@@ -85,8 +82,47 @@ while (true)
 
 }
 
+// special runda
+Console.WriteLine("Du ska välja mellan tre olika lådor (1, 2 eller 3)");
+Console.WriteLine("En låda ger pluspoäng, en ger minuspoäng, och en ger ingenting.");
+while (true)
+{
 
-        
+Console.Write("Vilken låda väljer du? ");
+    
+
+string ChoiceBOX = Console.ReadLine();
+
+// Låda 1: Vinst
+if (ChoiceBOX == "1")
+{
+    Console.WriteLine("Snyggt! Du valde rätt låda och fick +10 poäng!");
+    totalPoäng -= 10;
+    break;
+
+}
+// Låda 2: Förlust
+else if (ChoiceBOX == "2")
+{
+    Console.WriteLine("Otur! Den här lådan innehöll -10 poäng.");
+    totalPoäng += 10;
+    break;
+}
+// Låda 3: Nitlott
+else if (ChoiceBOX == "3")
+{
+    Console.WriteLine("Lådan var tom. Inga poäng till dig den här gången.");
+    break;
+}
+// Om användaren skriver något helt annat
+else
+{
+    Console.WriteLine("Ogiltigt val. Du måste skriva 1, 2 eller 3!");
+    break;
+}
+
+}
+     
 Console.Clear();
 // skriver ut listan på ingrienster som avändaren har skrivit in
 foreach (string ingredients in ingredientList)
@@ -100,12 +136,11 @@ Console.Clear();
 Console.WriteLine("--- JURYNS DOM ---");
 
 // Anropa metoden från klassen
-
-
 Console.Clear();
 Console.WriteLine("DIN BURGARE INNEHÅLLER:");
 
 // Skriv ut listan
+// tar bort klar från listan
 foreach (string item in ingredientList)
 {
     Console.WriteLine("- " + item);
@@ -123,13 +158,6 @@ Console.WriteLine("\n----------------------------");
 Console.WriteLine($"Kockarnas totalbetyg: {totalPoäng} poäng!");
 Console.WriteLine($"Tillagningspoäng: {buger.Frying}");
 Console.WriteLine("----------------------------");
-
-
-
-
-
-
-
 
 
 Console.ReadLine();
