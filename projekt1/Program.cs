@@ -50,33 +50,29 @@ int totalPoäng = 0;
 
 
 // Användaren får lägga till ingredienser
-int IngredientPoints = 0;
-while (IngredientPoints < 3)
+while (true)
 {
     Console.WriteLine("Nu får du lägga in en speciell ingrediens. Detta kan vara avgörande för dig!");
     Console.WriteLine("Skriv 'klar' när du är färdig.");
-    string IngredientPoint = Console.ReadLine();
-    Console.ReadLine();
 
-    bool success = int.TryParse(IngredientPoint, out IngredientPoints);
+    string ingredientChoice = Console.ReadLine();
 
-
-    if (IngredientPoint.ToLower() == "klar")
+    if (ingredientChoice.ToLower() == "klar")
     {
         break;
     }
 
-    buger.AddIngredient(IngredientPoint);
+    buger.AddIngredient(ingredientChoice);
 
     int poäng = rate.Next(1, 11);
     totalPoäng += poäng;
 
-    Console.WriteLine($"{IngredientPoint} gav {poäng} poäng!");
+    Console.WriteLine($"{ingredientChoice} gav {poäng} poäng!");
     Console.WriteLine($"Totalpoäng just nu: {totalPoäng}");
     Console.WriteLine();
 }
 
-// generisk klass för som redan har bestämda poäng 
+// generisk klass 
 Dictionary<string, int> ingredientPoäng = new Dictionary<string, int>()
 {
     {"ost", 10},
