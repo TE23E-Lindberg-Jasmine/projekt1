@@ -1,13 +1,13 @@
 public class Hamburger
 {
     private int _frying;
-    public int Frying 
+
+    public int Frying
     {
         get => _frying;
-        set => _frying = Math.Max(0, value);
+        set => _frying = value;
     }
 
-    // Vi gör 'set' privat så att ingredienser bara kan läggas till via AddIngredient-metoden
     public List<string> IngredientList { get; private set; } = new List<string>();
 
     public void AddIngredient(string ingredient)
@@ -20,7 +20,15 @@ public class Hamburger
 
     public string GetCookingStatus()
     {
-        string status = Frying > 5 ? "Välstekt" : "Medium";
+        string status;
+
+        if (Frying >= 10)
+            status = "välstekt";
+        else if (Frying >= 5)
+            status = "grillad";
+        else
+            status = "dåligt tillagad";
+
         return $"Hamburgaren har {IngredientList.Count} ingredienser och är {status}.";
     }
 
@@ -30,5 +38,4 @@ public class Hamburger
         if (totalPoints > 25) return "Bra jobbat, men den saknar det lilla extra.";
         return "Tyvärr, det här var ingen smakupplevelse.";
     }
-
 }
