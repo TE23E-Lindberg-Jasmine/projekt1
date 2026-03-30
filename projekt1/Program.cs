@@ -72,7 +72,7 @@ while (true)
     Console.WriteLine();
 }
 
-// generisk klass 
+// generisk klass som har fasta poäng 
 Dictionary<string, int> ingredientPoäng = new Dictionary<string, int>()
 {
     {"ost", 10},
@@ -85,7 +85,6 @@ Dictionary<string, int> ingredientPoäng = new Dictionary<string, int>()
 while (true)
 {
     Console.WriteLine("Nu får du lägga in en speciell ingrediens.");
-    Console.WriteLine("Välj mellan: ost, bacon, sallad, tomat, lök, chili, jalapeno, tryffel");
     Console.WriteLine("Skriv 'klar' när du är färdig.");
 
     string ingredientChoice = Console.ReadLine().ToLower();
