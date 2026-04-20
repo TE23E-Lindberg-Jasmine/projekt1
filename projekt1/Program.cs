@@ -59,13 +59,13 @@ int totalPoäng = 0;
 while (true)
 {
     // Skriver ut instruktioner till användaren
-    Console.WriteLine("Nu får du lägga in en speciell ingrediens. Detta kan vara avgörande för dig!");
-    Console.WriteLine("Skriv 'klar' när du är färdig.");
+    Console.WriteLine("Nu får du lägga in  ingredienser.");
+    Console.WriteLine("Skriv 'nästa' när du är färdig.");
 
     // Läser in användarens svar från konsolen
     string ingredientChoice = Console.ReadLine();
 
- if (ingredientChoice.Trim().ToLower() == "klar")
+ if (ingredientChoice.Trim().ToLower() == "nästa")
 {
     break;
 }
@@ -176,18 +176,14 @@ foreach (string item in buger.IngredientList)
 
 Console.WriteLine("- bröd");
 
-// Juryns dom
-Console.WriteLine("--- JURYNS DOM ---");
-Console.WriteLine(judge1.JudgeBurger(totalPoäng));
-Console.WriteLine(judge2.JudgeBurger(totalPoäng));
-Console.WriteLine(judge3.JudgeBurger(totalPoäng));
 string tillagningsstatus = buger.GetCookingStatus();
-
 
 // Skriver ut resultatet 
 Console.WriteLine("--- JURYNS DOM ---");
-// Console.WriteLine(betyg);
-// Console.WriteLine(tillagningsstatus);
+Console.WriteLine(judge1.JudgeBurger(totalPoäng * 2));
+Console.WriteLine(judge2.JudgeBurger(totalPoäng - 1));
+Console.WriteLine(judge3.JudgeBurger(totalPoäng - 10));
+Console.WriteLine(tillagningsstatus);
 
 Console.WriteLine("\n----------------------------");
 Console.WriteLine($"Kockarnas totalbetyg: {totalPoäng} poäng");
