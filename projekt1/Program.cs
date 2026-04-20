@@ -1,6 +1,12 @@
 ﻿Hamburger buger = new Hamburger();
 buger.Frying = 0;
 
+Judge judge1 = new Judge("Gordon");
+Judge judge2 = new Judge("Leif");
+Judge judge3 = new Judge("Tina");
+
+
+
 Console.WriteLine("Välkommen till burgartävlingen! I denna tävling ska du bygga din egen hamburgare som sedan blir betygsatt av kända kockar i juryn.");
 
 // Första rundan
@@ -52,22 +58,31 @@ int totalPoäng = 0;
 // Användaren får lägga till ingredienser
 while (true)
 {
+    // Skriver ut instruktioner till användaren
     Console.WriteLine("Nu får du lägga in en speciell ingrediens. Detta kan vara avgörande för dig!");
     Console.WriteLine("Skriv 'klar' när du är färdig.");
 
+    // Läser in användarens svar från konsolen
     string ingredientChoice = Console.ReadLine();
 
-    if (ingredientChoice.ToLower() == "klar")
-    {
-        break;
-    }
+ if (ingredientChoice.Trim().ToLower() == "klar")
+{
+    break;
+}
 
+    // Lägger till ingrediensen i hamburgaren
     buger.AddIngredient(ingredientChoice);
 
+    // Slumpar fram poäng mellan 1 och 10
     int poäng = rate.Next(1, 11);
+
+    // Lägger till poängen i totalpoängen
     totalPoäng += poäng;
 
+    // Skriver ut hur många poäng ingrediensen gav
     Console.WriteLine($"{ingredientChoice} gav {poäng} poäng!");
+
+    // Skriver ut spelarens totalpoäng
     Console.WriteLine($"Totalpoäng just nu: {totalPoäng}");
     Console.WriteLine();
 }
@@ -113,7 +128,7 @@ while (true)
     Console.WriteLine();
 }
 
-// Specialrunda
+// speical runda med låtor där man ska välja
 Console.Clear();
 Console.WriteLine("Du ska välja mellan tre olika lådor (1, 2 eller 3).");
 Console.WriteLine("En låda ger pluspoäng, en ger minuspoäng, och en ger ingenting.");
@@ -162,14 +177,17 @@ foreach (string item in buger.IngredientList)
 Console.WriteLine("- bröd");
 
 // Juryns dom
-string betyg = buger.GetJudgesVerdict(totalPoäng);
+Console.WriteLine("--- JURYNS DOM ---");
+Console.WriteLine(judge1.JudgeBurger(totalPoäng));
+Console.WriteLine(judge2.JudgeBurger(totalPoäng));
+Console.WriteLine(judge3.JudgeBurger(totalPoäng));
 string tillagningsstatus = buger.GetCookingStatus();
 
 
 // Skriver ut resultatet 
 Console.WriteLine("--- JURYNS DOM ---");
-Console.WriteLine(betyg);
-Console.WriteLine(tillagningsstatus);
+// Console.WriteLine(betyg);
+// Console.WriteLine(tillagningsstatus);
 
 Console.WriteLine("\n----------------------------");
 Console.WriteLine($"Kockarnas totalbetyg: {totalPoäng} poäng");
